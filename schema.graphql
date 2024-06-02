@@ -1,0 +1,41 @@
+type WarheadClaimed @entity(immutable: true) {
+  id: Bytes!
+  warheadId: BigInt! # uint256
+  claimer: Bytes! # address
+  claimedAt: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WarheadCreated @entity(immutable: true) {
+  id: Bytes!
+  warheadId: BigInt! # uint256
+  dropper: Bytes! # address
+  warheadAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WarheadCreatedWithReceiver @entity(immutable: true) {
+  id: Bytes!
+  warheadId: BigInt! # uint256
+  dropper: Bytes! # address
+  warheadAddress: Bytes! # address
+  targetReceiver: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WarheadDropped @entity(immutable: true) {
+  id: Bytes!
+  warheadId: BigInt! # uint256
+  targetLat: BigInt! # int256
+  targetLong: BigInt! # int256
+  impactTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

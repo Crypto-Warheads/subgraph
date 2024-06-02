@@ -1,0 +1,35 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: WarheadFactory
+    network: linea
+    source:
+      address: "0x722368b00248032a00e6BB0BB0B9d1C6c91AA5d5"
+      abi: WarheadFactory
+      startBlock: 5089313
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - WarheadClaimed
+        - WarheadCreated
+        - WarheadCreatedWithReceiver
+        - WarheadDropped
+      abis:
+        - name: WarheadFactory
+          file: ./abis/WarheadFactory.json
+      eventHandlers:
+        - event: WarheadClaimed(uint256,address,uint256)
+          handler: handleWarheadClaimed
+        - event: WarheadCreated(uint256,address,address)
+          handler: handleWarheadCreated
+        - event: WarheadCreatedWithReceiver(uint256,address,address,address)
+          handler: handleWarheadCreatedWithReceiver
+        - event: WarheadDropped(uint256,int256,int256,uint256)
+          handler: handleWarheadDropped
+      file: ./src/warhead-factory.ts
